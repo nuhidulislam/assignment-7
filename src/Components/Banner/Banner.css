@@ -1,0 +1,26 @@
+.banner-container{
+  height: 480px;
+ 
+  background-image: url(../../../images/bg-shadow.png);
+  
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+
+.Credit-btn{
+  background: #DAEF28;
+  padding:10px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 16px;
+  color:black;
+  
+}
+.btn-border{
+  display: inline-block;
+  border: 2px solid #DAEF28;
+  padding: 3px;
+  border-radius: 16px;
+}
