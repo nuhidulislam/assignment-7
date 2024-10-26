@@ -35,7 +35,7 @@ const AvailablePlayers = ({addPlayerToSelectedPlayer, reduceMoney}) => {
            <div className="flex justify-between items-center border-b-2 border-gray-500 pb-3">
              <div className="flex gap-2 items-center">
                <i className="fa-solid fa-flag"></i>
-               <h1 className="text-gray-500 text-[16px]">{player.country}</h1>
+               <h1 className="text-gray-600 text-[16px]">{player.country}</h1>
              </div>
 
              <div className="bg-gray-300 py-1 px-2 rounded-xl">
