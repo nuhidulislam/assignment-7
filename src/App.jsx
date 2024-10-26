@@ -1,111 +1,121 @@
-import { useState } from 'react'
-import './App.css'
-import Banner from './Components/Banner/Banner'
-import AvailableBtn from './Components/FunctionalSection/AvailableBtn'
-import Navber from './Components/Navber/Navber'
-import Footer from './Components/Footer/Footer'
+import { useState } from 'react';
+import './App.css';
+import Banner from './Components/Banner/Banner';
+import Footer from './Components/Footer/Footer';
+import AvailableBtn from './Components/FunctionalSection/AvailableBtn';
+import Navber from './Components/Navber/Navber';
 
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-
-  const [selectedPlayer, setSelectedPlayer]= useState([])
+  const [selectedPlayer, setSelectedPlayer] = useState([]);
 
   // add player to selected player
-  const addPlayerToSelectedPlayer= player=> {
-    if(selectedPlayer.length===6){
-      toast('You can not select more than 6 players')
-      return
+  const addPlayerToSelectedPlayer = player => {
+    if (selectedPlayer.length > 5) {
+      toast('You can not select more than 6 players');
+      return;
+      
+    }else{
+      setSelectedPlayer([...selectedPlayer, player]);
+     
     }
-    const allReadyAdded= selectedPlayer.find(addedPlayer=>addedPlayer.playerId == player.playerId)
+    console.log(selectedPlayer.length);
+    const allReadyAdded = selectedPlayer.find(
+      addedPlayer => addedPlayer.playerId == player.playerId
+    );
 
-    if(allReadyAdded){
-      toast('This Player is already Selected', {position: "top-right"})
+    if (allReadyAdded) {
+      toast('This Player is already Selected', { position: 'top-center' });
     }
-    else{
-      setSelectedPlayer([...selectedPlayer, player])
+  };
+
+  // add money
+  const [donateMoney, setDonateMondy] = useState(0);
+  const addMoney = () => {
+    toast.success('90000 taka added to your account', {
+      position: 'top-center',
+    });
+
+    setDonateMondy(donateMoney + 90000);
+  };
+
+  // reduce money
+  const reduceMoney = (money, player) => {
+    const allReadyAdded = selectedPlayer.find(
+      addedPlayer => addedPlayer.playerId == player.playerId
+    );
+
+    if (donateMoney <= money) {
+      toast.error(
+        'You do not have enough money to hire this player. Claim some credit',
+        { position: 'top-center' }
+      );
+      return;
     }
-    
-  }
 
+    if (!allReadyAdded) {
+      
+      toast.success(`Congrates!! ${player.name}  is now in your team.`, {
+        position: 'top-center',
+      });
+      setDonateMondy(donateMoney - money);
+    }
+  };
 
-  // remove 
-  const handleRemove = id=>{
-    
-    
-
-    const updatedPlayer= selectedPlayer.filter(upPlayer=>upPlayer.playerId !== id)
-    setSelectedPlayer(updatedPlayer)
-    
-  }
-
+  // remove
+  const handleRemove = id => {
+    const updatedPlayer = selectedPlayer.filter(
+      upPlayer => upPlayer.playerId !== id
+    );
+    setSelectedPlayer(updatedPlayer);
+    toast.warn(`Player is removed.`, { position: 'top-center' });
+  };
 
   // end add player
 
-  const [isActive, setIsActive]= useState({
-    available:true,
-    status: "available"
-  })
+  const [isActive, setIsActive] = useState({
+    available: true,
+    status: 'available',
+  });
 
-  const handleIsActiveState = (status) =>{
-    if(status=="available"){
+  const handleIsActiveState = status => {
+    if (status == 'available') {
       setIsActive({
-        available:true,
-        status:'available'
-      })
-    }else{
+        available: true,
+        status: 'available',
+      });
+    } else {
       setIsActive({
         available: false,
-        status: "selected"
-      })
+        status: 'selected',
+      });
     }
-  }
-
-  // add money
-  const [donateMoney, setDonateMondy]=useState(0)
-  const addMoney=()=>{
-
-    setDonateMondy(donateMoney+60000)
-  }
-
-  
-
-  // reduce money
-  const reduceMoney=(money)=>{
-    if(donateMoney<=money){
-      toast('You do not have enough money to hire this player.')
-    }else{
-      setDonateMondy(donateMoney-money)
-    }
-    
-
-
-    
-  }
+  };
 
   return (
-    
     <>
-    {/* nav section */}
-    <Navber donateMoney={donateMoney} ></Navber>
-    {/* banner section */}
-    <Banner addMoney={addMoney}></Banner>
-    {/* Functional btn */}
-    <AvailableBtn 
-    selectedPlayer={selectedPlayer}
-    addPlayerToSelectedPlayer={addPlayerToSelectedPlayer} 
-    handleIsActiveState={handleIsActiveState} 
-    isActive={isActive}
-    reduceMoney={reduceMoney}
-    handleRemove={handleRemove}>
-   
-    </AvailableBtn>
-    {/* Footer Section */}
-    <Footer></Footer>
-     
+      {/* nav section */}
+      <Navber
+        donateMoney={donateMoney}
+        addPlayerToSelectedPlayer={addPlayerToSelectedPlayer}
+      ></Navber>
+      {/* banner section */}
+      <Banner addMoney={addMoney}></Banner>
+      {/* Functional btn */}
+      <AvailableBtn
+        selectedPlayer={selectedPlayer}
+        addPlayerToSelectedPlayer={addPlayerToSelectedPlayer}
+        handleIsActiveState={handleIsActiveState}
+        isActive={isActive}
+        reduceMoney={reduceMoney}
+        handleRemove={handleRemove}
+      ></AvailableBtn>
+      {/* Footer Section */}
+      <Footer></Footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,7 +1,10 @@
 .banner-container{
   height: 480px;
- 
-  background-image: url(../../../images/bg-shadow.png);
+ border-radius: 20px;
+  /* background-image: url(../../../images/bg-shadow.png); */
+  /* background: black; */
+  background-image: linear-gradient(#1D2671,black);
+  color: white;
   
   background-position: center;
   background-size: cover;
