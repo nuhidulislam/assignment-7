@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
-import './AvailablePlayers.css'
 
-const AvailablePlayers = ({addPlayerToSelectedPlayer, playerDone}) => {
+const AvailablePlayers = ({addPlayerToSelectedPlayer, reduceMoney}) => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
   useEffect(() => {
     fetch('/Players.json')
       .then(res => res.json())
       .then(data => setAvailablePlayers(data));
   }, []);
-  console.log(selectedPlayer)
 
   return (
 
