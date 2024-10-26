@@ -12,13 +12,38 @@ function App() {
   const [selectedPlayer, setSelectedPlayer] = useState([]);
 
   // add player to selected player
-  const addPlayerToSelectedPlayer = player => {
-    if (selectedPlayer.length > 5) {
-      toast('You can not select more than 6 players');
-      return;
+  const addPlayerToSelectedPlayer = (player, money) => {
+    console.log(money)
+    if (selectedPlayer.length <6) {
+      
+      const allReadyAdded = selectedPlayer.find(
+        addedPlayer => addedPlayer.playerId == player.playerId
+      );
+  
+      if (donateMoney <= money) {
+        toast.error(
+          'You do not have enough money to hire this player. Claim some credit',
+          { position: 'top-center' }
+        );
+        return;
+      }
+  
+      if (!allReadyAdded) {
+        setSelectedPlayer([...selectedPlayer, player]);
+        toast.success(`Congrates!! ${player.name}  is now in your team.`, {
+          position: 'top-center',
+        });
+        setDonateMondy(donateMoney - money);
+       
+        
+      }  
       
     }else{
-      setSelectedPlayer([...selectedPlayer, player]);
+      
+
+
+      toast('You can not select more than 6 players');
+      return;
      
     }
     console.log(selectedPlayer.length);
@@ -41,28 +66,7 @@ function App() {
     setDonateMondy(donateMoney + 90000);
   };
 
-  // reduce money
-  const reduceMoney = (money, player) => {
-    const allReadyAdded = selectedPlayer.find(
-      addedPlayer => addedPlayer.playerId == player.playerId
-    );
 
-    if (donateMoney <= money) {
-      toast.error(
-        'You do not have enough money to hire this player. Claim some credit',
-        { position: 'top-center' }
-      );
-      return;
-    }
-
-    if (!allReadyAdded) {
-      
-      toast.success(`Congrates!! ${player.name}  is now in your team.`, {
-        position: 'top-center',
-      });
-      setDonateMondy(donateMoney - money);
-    }
-  };
 
   // remove
   const handleRemove = id => {
@@ -109,7 +113,7 @@ function App() {
         addPlayerToSelectedPlayer={addPlayerToSelectedPlayer}
         handleIsActiveState={handleIsActiveState}
         isActive={isActive}
-        reduceMoney={reduceMoney}
+      
         handleRemove={handleRemove}
       ></AvailableBtn>
       {/* Footer Section */}

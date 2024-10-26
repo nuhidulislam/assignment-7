@@ -6,8 +6,7 @@ const AvailableBtn = ({
   isActive,
   addPlayerToSelectedPlayer,
   selectedPlayer,
-  handleRemove,
-  reduceMoney
+  handleRemove
 }) => {
   return (
     <div className="mt-12">
@@ -29,7 +28,7 @@ const AvailableBtn = ({
       </div>
       {isActive.available ? 
         <AvailablePlayers
-        reduceMoney={reduceMoney}
+       
           addPlayerToSelectedPlayer={addPlayerToSelectedPlayer}
         ></AvailablePlayers>
        : 

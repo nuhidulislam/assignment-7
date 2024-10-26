@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const AvailablePlayers = ({addPlayerToSelectedPlayer, reduceMoney}) => {
+const AvailablePlayers = ({addPlayerToSelectedPlayer}) => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
   useEffect(() => {
     fetch('/Players.json')
@@ -62,7 +62,7 @@ const AvailablePlayers = ({addPlayerToSelectedPlayer, reduceMoney}) => {
                <h1 className=" text-xl">Price: $ {player.biddingPrice}</h1>
              </div>
 
-             <button onClick={()=>{addPlayerToSelectedPlayer(player,player.biddingPrice), reduceMoney(player.biddingPrice, player)}  }  className="border-2 border-gray-400 py-1 px-2 rounded-xl">
+             <button onClick={()=>addPlayerToSelectedPlayer(player,player.biddingPrice)  }  className="border-2 border-gray-400 py-1 px-2 rounded-xl">
                Choose Player
              </button>
            </div>
