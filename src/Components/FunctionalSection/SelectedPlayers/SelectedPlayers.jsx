@@ -5,7 +5,9 @@ const SelectedPlayers = ({
 }) => {
   console.log(selectedPlayer);
   return (
-    <div className="max-w-6xl mx-auto  p-3 space-y-2">
+   <div className="max-w-6xl mx-auto  p-3">
+    <h1 className="text-2xl font-bold text-black mb-4">Selected Players {`(${selectedPlayer.length}/6)`}</h1>
+     <div className=" space-y-2">
       {selectedPlayer.map((singlePlayer, index) => (
         <div
           className="border-2 border-gray-500 rounded-2xl flex items-center justify-between"
@@ -27,6 +29,7 @@ const SelectedPlayers = ({
           <div className="text-2xl text-red-700 pr-5">
             <button onClick={() => handleRemove(singlePlayer.playerId)}>
               <i className="fa-solid fa-trash"></i>
+              
             </button>
           </div>
         </div>
@@ -38,6 +41,7 @@ const SelectedPlayers = ({
       </button>
       </div>
     </div>
+   </div>
   );
 };
 
