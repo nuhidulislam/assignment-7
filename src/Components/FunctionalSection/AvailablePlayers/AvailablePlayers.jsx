@@ -64,8 +64,13 @@ const AvailablePlayers = ({addPlayerToSelectedPlayer, playerDone}) => {
                <h1 className=" text-xl">Price: $ {player.biddingPrice}</h1>
              </div>
 
+<<<<<<< HEAD
              <button onClick={()=>addPlayerToSelectedPlayer(player,player.biddingPrice)  }  className={` ${playerDone?'selected-btn available-btn':'available-btn'}`}>
                {playerDone?'Selected':'Choose Player'}
+=======
+             <button onClick={()=>{addPlayerToSelectedPlayer(player,player.biddingPrice), reduceMoney(player.biddingPrice, player)}  }  className="border-2 border-gray-400 py-1 px-2 rounded-xl">
+               Choose Player
+>>>>>>> e3e5473f60d7ec58594ccdc6513ce87d47c0712b
              </button>
            </div>
          </div>

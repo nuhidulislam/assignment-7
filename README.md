@@ -13,5 +13,3 @@
 #### 1. If you don't have money in your account, you can't hire a player.
 #### 2. If you want to remove a player even after buying him, you can remove him by clicking on the delete button.
 #### 3. Here you cannot include more than six players in your team.
-
-
